@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<grammar version="1.0" xml:lang="ru-RU" root="Commands"
+xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics-ms/1.0">
+  <rule id = "Commands" scope = "public">
+    <one-of>
+      <item>открой хром</item>
+    </one-of>
+  </rule>
+</grammar>
