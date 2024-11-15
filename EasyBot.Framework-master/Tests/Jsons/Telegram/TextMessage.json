@@ -1,0 +1,20 @@
+{
+  "message_id": 748,
+  "from": {
+    "id": 239678169,
+    "is_bot": false,
+    "first_name": "Дима",
+    "last_name": "Башинский",
+    "username": "BashkaMen",
+    "language_code": "ru"
+  },
+  "chat": {
+    "id": 239678169,
+    "first_name": "Дима",
+    "last_name": "Башинский",
+    "username": "BashkaMen",
+    "type": "private"
+  },
+  "date": 1572026261,
+  "text": "йцу"
+}

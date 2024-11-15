@@ -1,0 +1,743 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FastSearchLibrary</name>
+    </assembly>
+    <members>
+        <member name="P:FastSearchLibrary.DirectoryCancellationSearcherBase.handlerOption">
+            <summary>
+            Determines where execute event DirectoriesFound handlers
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectoryCancellationSearcherBase.StartSearch">
+            <summary>
+            Starts a directory search operation with realtime reporting using several threads in thread pool.
+            </summary>
+        </member>
+        <member name="T:FastSearchLibrary.DirectoryEventArgs">
+            <summary>
+            Provides data for DirectoriesFound event.
+            </summary>
+        </member>
+        <member name="P:FastSearchLibrary.DirectoryEventArgs.Directories">
+            <summary>
+            Gets a list of finding directories.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectoryEventArgs.#ctor(System.Collections.Generic.List{System.IO.DirectoryInfo})">
+            <summary>
+            Initialize a new instance of DirectoryEventArgs class that describes a FilesFound event.
+            </summary>
+            <param name="directories">The list of finding directories.</param>
+        </member>
+        <member name="T:FastSearchLibrary.DirectorySearcher">
+            <summary>
+            Represents a class for fast directory search.
+            </summary>
+        </member>
+        <member name="E:FastSearchLibrary.DirectorySearcher.DirectoriesFound">
+            <summary>
+            Event fires when next portion of directories is found. Event handlers are not thread safe. 
+            </summary>
+        </member>
+        <member name="E:FastSearchLibrary.DirectorySearcher.SearchCompleted">
+            <summary>
+            Event fires when search process is completed or stopped.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.#ctor(System.String,System.String,System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers,System.Boolean)">
+            <summary>
+            Initialize a new instance of DirectorySearch class. 
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where DirectoriesFound event handlers are executed.</param>
+            <param name="suppressOperationCanceledException">Determines whether necessary suppress OperationCanceledException if it possible.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.#ctor(System.String,System.String,System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initialize a new instance of DirectorySearch class. 
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where DirectoriesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.#ctor(System.String,System.String,System.Threading.CancellationTokenSource)">
+            <summary>
+            Initialize a new instance of DirectorySearch class. 
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.#ctor(System.String,System.Threading.CancellationTokenSource)">
+            <summary>
+            Initialize a new instance of DirectorySearch class. 
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.#ctor(System.String,System.Func{System.IO.DirectoryInfo,System.Boolean},System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers,System.Boolean)">
+            <summary>
+            Initialize a new instance of DirectorySearch class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where DirectoriesFound event handlers are executed.</param>
+            <param name="suppressOperationCanceledException">Determines whether necessary suppress OperationCanceledException if it possible.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.#ctor(System.String,System.Func{System.IO.DirectoryInfo,System.Boolean},System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initialize a new instance of DirectorySearch class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where DirectoriesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.#ctor(System.String,System.Func{System.IO.DirectoryInfo,System.Boolean},System.Threading.CancellationTokenSource)">
+            <summary>
+            Initialize a new instance of DirectorySearch class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.StartSearch">
+            <summary>
+            Starts a directory search operation with realtime reporting using several threads in thread pool.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.StartSearchAsync">
+            <summary>
+            Starts a directory search operation with realtime reporting using several threads in thread pool as an asynchronous operation.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.StopSearch">
+            <summary>
+            Stops a directory search operation.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.GetDirectories(System.String,System.String)">
+            <summary>
+            Returns a list of directories that are contained in directory and all subdirectories.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <returns>List of finding directories.</returns>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.GetDirectories(System.String,System.Func{System.IO.DirectoryInfo,System.Boolean})">
+            <summary>
+            Returns a list of directories that are contained in directory and all subdirectories.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <returns>List of finding directories.</returns>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.GetDirectoriesAsync(System.String,System.String)">
+            <summary>
+            Returns a list of directories that are contained in directory and all subdirectories as an asynchronous operation.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.GetDirectoriesAsync(System.String,System.Func{System.IO.DirectoryInfo,System.Boolean})">
+            <summary>
+            Returns a list of directories that are contained in directory and all subdirectories as an asynchronous operation.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.GetDirectoriesFast(System.String,System.String)">
+            <summary>
+            Returns a list of directories that are contained in directory and all subdirectories using several threads in thread pool.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <returns>List of finding directories.</returns>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.GetDirectoriesFast(System.String,System.Func{System.IO.DirectoryInfo,System.Boolean})">
+            <summary>
+            Returns a list of directories that are contained in directory and all subdirectories using several threads in thread pool.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <returns>List of finding directories.</returns>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.GetDirectoriesFastAsync(System.String,System.String)">
+            <summary>
+            Returns a list of directories that are contained in directory and all subdirectories using several threads in thread pool as an asynchronous operation.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcher.GetDirectoriesFastAsync(System.String,System.Func{System.IO.DirectoryInfo,System.Boolean})">
+            <summary>
+            Returns a list of directories that are contained in directory and all subdirectories using several threads in thread pool as an asynchronous operation.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="T:FastSearchLibrary.DirectorySearcherMultiple">
+            <summary>
+            Represents a class for fast directory search in multiple directories.
+            </summary>
+        </member>
+        <member name="E:FastSearchLibrary.DirectorySearcherMultiple.DirectoriesFound">
+            <summary>
+            Event fires when next portion of directories is found. Event handlers are not thread safe. 
+            </summary>
+        </member>
+        <member name="E:FastSearchLibrary.DirectorySearcherMultiple.SearchCompleted">
+            <summary>
+            Event fires when search process is completed or stopped.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.OnSearchCompleted(System.Boolean)">
+            <summary>
+            Calls a SearchCompleted event.
+            </summary>
+            <param name="isCanceled">Determines whether search process canceled.</param>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.Func{System.IO.DirectoryInfo,System.Boolean},System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers,System.Boolean)">
+            <summary>
+            Initialize a new instance of DirectorySearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where DirectoriesFound event handlers are executed.</param>
+            <param name="suppressOperationCanceledException">Determines whether necessary suppress OperationCanceledException if it possible.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.Func{System.IO.DirectoryInfo,System.Boolean},System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initialize a new instance of DirectorySearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where DirectoriesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.Func{System.IO.DirectoryInfo,System.Boolean},System.Threading.CancellationTokenSource)">
+            <summary>
+            Initialize a new instance of DirectorySearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="isValid">The delegate that determines algorithm of directory selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.String,System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers,System.Boolean)">
+            <summary>
+            Initialize a new instance of DirectorySearchMultiple class. 
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where DirectoriesFound event handlers are executed.</param>
+            <param name="suppressOperationCanceledException">Determines whether necessary suppress OperationCanceledException if it possible.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.String,System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initialize a new instance of DirectorySearchMultiple class. 
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where DirectoriesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.String,System.Threading.CancellationTokenSource)">
+            <summary>
+            Initialize a new instance of DirectorySearchMultiple class. 
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.Threading.CancellationTokenSource)">
+            <summary>
+            Initialize a new instance of DirectorySearchMultiple class. 
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.StartSearch">
+            <summary>
+            Starts a directory search operation with realtime reporting using several threads in thread pool.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.StartSearchAsync">
+            <summary>
+            Starts a directory search operation with realtime reporting using several threads in thread pool as an asynchronous operation.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.DirectorySearcherMultiple.StopSearch">
+            <summary>
+            Stops a directory search operation.
+            </summary>
+        </member>
+        <member name="T:FastSearchLibrary.ExecuteHandlers">
+            <summary>
+            Specifies where event handlers are executed.
+            </summary>
+        </member>
+        <member name="F:FastSearchLibrary.ExecuteHandlers.InCurrentTask">
+            <summary>
+            To execute event handlers in current task. 
+            </summary>
+        </member>
+        <member name="F:FastSearchLibrary.ExecuteHandlers.InNewTask">
+            <summary>
+            To execute event handlers in new task.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.FileDelegateSearcher.StartSearch">
+            <summary>
+            Starts a file search operation with realtime reporting using several threads in thread pool.
+            </summary>
+        </member>
+        <member name="T:FastSearchLibrary.FileEventArgs">
+            <summary>
+            Provides data for FilesFound event.
+            </summary>
+        </member>
+        <member name="P:FastSearchLibrary.FileEventArgs.Files">
+            <summary>
+            Gets a list of finding files.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.FileEventArgs.#ctor(System.Collections.Generic.List{System.IO.FileInfo})">
+            <summary>
+            Initialize a new instance of FileEventArgs class that describes a FilesFound event.
+            </summary>
+            <param name="files">The list of finding files.</param>
+        </member>
+        <member name="M:FastSearchLibrary.FilePatternSearcher.StartSearch">
+            <summary>
+            Starts a file search operation with realtime reporting using several threads in thread pool.
+            </summary>
+        </member>
+        <member name="T:FastSearchLibrary.FileSearcher">
+            <summary>
+            Represents a class for fast file search.
+            </summary>
+        </member>
+        <member name="E:FastSearchLibrary.FileSearcher.FilesFound">
+            <summary>
+            Event fires when next portion of files is found. Event handlers are not thread safe. 
+            </summary>
+        </member>
+        <member name="E:FastSearchLibrary.FileSearcher.SearchCompleted">
+            <summary>
+            Event fires when search process is completed or stopped. 
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.String,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.Func{System.IO.FileInfo,System.Boolean},FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.Func{System.IO.FileInfo,System.Boolean})">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.String,System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers,System.Boolean)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <param name="suppressOperationCanceledException">Determines whether necessary suppress OperationCanceledException if it possible.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.String,System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.String,System.Threading.CancellationTokenSource)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.Threading.CancellationTokenSource)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.Func{System.IO.FileInfo,System.Boolean},System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers,System.Boolean)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <param name="suppressOperationCanceledException">Determines whether necessary suppress OperationCanceledException if it possible.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.Func{System.IO.FileInfo,System.Boolean},System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.#ctor(System.String,System.Func{System.IO.FileInfo,System.Boolean},System.Threading.CancellationTokenSource)">
+            <summary>
+            Initializes a new instance of FileSearcher class.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.StartSearch">
+            <summary>
+            Starts a file search operation with realtime reporting using several threads in thread pool.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.StartSearchAsync">
+            <summary>
+            Starts a file search operation with realtime reporting using several threads in thread pool as an asynchronous operation.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.StopSearch">
+            <summary>
+            Stops a file search operation.
+            </summary>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.GetFiles(System.String,System.String)">
+            <summary>
+            Returns a list of files that are contained in directory and all subdirectories.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <returns>List of finding files</returns>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.GetFiles(System.String,System.Func{System.IO.FileInfo,System.Boolean})">
+            <summary>
+            Returns a list of files that are contained in directory and all subdirectories.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <returns>List of finding files.</returns>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.GetFilesAsync(System.String,System.String)">
+            <summary>
+            Returns a list of files that are contained in directory and all subdirectories as an asynchronous operation.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.GetFilesAsync(System.String,System.Func{System.IO.FileInfo,System.Boolean})">
+            <summary>
+            Returns a list of files that are contained in directory and all subdirectories as an asynchronous operation.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.GetFilesFast(System.String,System.String)">
+            <summary>
+            Returns a list of files that are contained in directory and all subdirectories using several threads of thread pool.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <returns>List of finding files.</returns>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.GetFilesFast(System.String,System.Func{System.IO.FileInfo,System.Boolean})">
+            <summary>
+            Returns a list of files that are contained in directory and all subdirectories using several threads of thread pool.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <returns>List of finding files.</returns>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.GetFilesFastAsync(System.String,System.String)">
+            <summary>
+            Returns a list of files that are contained in directory and all subdirectories using several threads of thread pool as an asynchronous operation.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="pattern">The search pattern.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcher.GetFilesFastAsync(System.String,System.Func{System.IO.FileInfo,System.Boolean})">
+            <summary>
+            Returns a list of files that are contained in directory and all subdirectories using several threads of thread pool as an asynchronous operation.
+            </summary>
+            <param name="folder">The start search directory.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="P:FastSearchLibrary.FileSearcherBase.handlerOption">
+            <summary>
+            Specifies where FilesFound event handlers are executed.
+            </summary>
+        </member>
+        <member name="T:FastSearchLibrary.FileSearcherMultiple">
+            <summary>
+            Represents a class for fast file search in multiple directories.
+            </summary>
+        </member>
+        <member name="E:FastSearchLibrary.FileSearcherMultiple.FilesFound">
+            <summary>
+            Event fires when next portion of files is found. Event handlers are not thread safe. 
+            </summary>
+        </member>
+        <member name="E:FastSearchLibrary.FileSearcherMultiple.SearchCompleted">
+            <summary>
+            Event fires when search process is completed or stopped.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.OnSearchCompleted(System.Boolean)">
+            <summary>
+            Calls a SearchCompleted event.
+            </summary>
+            <param name="isCanceled">Determines whether search process canceled.</param>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.Func{System.IO.FileInfo,System.Boolean},System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers,System.Boolean)">
+            <summary>
+            Initializes a new instance of FileSearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <param name="suppressOperationCanceledException">Determines whether necessary suppress OperationCanceledException if it possible.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.Func{System.IO.FileInfo,System.Boolean},System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initializes a new instance of FileSearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.Func{System.IO.FileInfo,System.Boolean},System.Threading.CancellationTokenSource)">
+            <summary>
+            Initializes a new instance of FileSearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="isValid">The delegate that determines algorithm of file selection.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.String,System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers,System.Boolean)">
+            <summary>
+            Initializes a new instance of FileSearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <param name="suppressOperationCanceledException">Determines whether necessary suppress OperationCanceledException if it possible.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.String,System.Threading.CancellationTokenSource,FastSearchLibrary.ExecuteHandlers)">
+            <summary>
+            Initializes a new instance of FileSearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <param name="handlerOption">Specifies where FilesFound event handlers are executed.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.String,System.Threading.CancellationTokenSource)">
+            <summary>
+            Initializes a new instance of FileSearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="pattern">The search pattern.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.#ctor(System.Collections.Generic.List{System.String},System.Threading.CancellationTokenSource)">
+            <summary>
+            Initializes a new instance of FileSearcherMultiple class.
+            </summary>
+            <param name="folders">Start search directories.</param>
+            <param name="tokenSource">Instance of CancellationTokenSource for search process cancellation possibility.</param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.StartSearch">
+            <summary>
+            Starts a file search operation with realtime reporting using several threads in thread pool.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.StartSearchAsync">
+            <summary>
+            Starts a file search operation with realtime reporting using several threads in thread pool as an asynchronous operation.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.FileSearcherMultiple.StopSearch">
+            <summary>
+            Stops a file search operation.
+            </summary>
+        </member>
+        <member name="T:FastSearchLibrary.SearchCompletedEventArgs">
+            <summary>
+            Provides data for SearchCompleted event.
+            </summary>
+        </member>
+        <member name="P:FastSearchLibrary.SearchCompletedEventArgs.IsCanceled">
+            <summary>
+            Gets whether this search process has completed due cancellation.
+            </summary>
+        </member>
+        <member name="M:FastSearchLibrary.SearchCompletedEventArgs.#ctor(System.Boolean)">
+            <summary>
+            Initialize a new instance of SearchCompletedEventArgs class that describes a SearchCompleted event.
+            </summary>
+            <param name="isCanceled">Determines whether search process canceled.</param>
+        </member>
+    </members>
+</doc>
